@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Total Drama: Create Your Own Adventure
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A interesting personal project where the user get to be involved in Total Drama Island where the user can participate in decision making and set up alliance in order to win!!!
 
 ## Available Scripts
 
