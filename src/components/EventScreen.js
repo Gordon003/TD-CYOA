@@ -5,7 +5,7 @@ import StartScreen from './StartScreen';
 
 export default function EventScreen() {
 
-    const [{ gameStarted, currentStoryList }, dispatchGlobal] = useGlobalState();
+    const [{ gameStarted, currentEpisodeListStory }] = useGlobalState();
     const [storyIndex, setStoryIndex] = useState(0);
 
     const handleClickNext = () => {
@@ -14,9 +14,9 @@ export default function EventScreen() {
 
     useEffect(() => {
         setStoryIndex(0);
-    }, [gameStarted, currentStoryList])
+    }, [gameStarted, currentEpisodeListStory])
 
-    let event = currentStoryList[storyIndex]
+    let event = currentEpisodeListStory[storyIndex]
 
     return (
         <div>
@@ -34,7 +34,7 @@ export default function EventScreen() {
                     }
 
                     {
-                        event.type === "dialogue" && <button onClick={handleClickNext}> Next </button>
+                        event.type === "story" && <button onClick={handleClickNext}> Next </button>
                     }
 
                 </>

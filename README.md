@@ -1,6 +1,6 @@
 # Total Drama: Create Your Own Adventure
 
-A interesting personal project where the user get to be involved in Total Drama Island where the user can participate in decision making and set up alliance in order to win!!!
+A personal project where player gets to be involved in Total Drama Island. Unlike other simulator website, this game aims to recreate the season with a unique twist determined by your decision and action. Good luck!
 
 ## Available Scripts
 
