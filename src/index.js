@@ -10,9 +10,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <GlobalState>
-      {/* <PlayerState> */}
+      <PlayerState>
         <App />
-      {/* </PlayerState> */}
+      </PlayerState>
     </GlobalState>
   </React.StrictMode>
 );
