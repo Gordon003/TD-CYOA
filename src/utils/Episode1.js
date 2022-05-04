@@ -1,16 +1,91 @@
 let introduceEvent;
 let introduceEventOpt1, introduceEventOpt2, introduceEventOpt3;
 let startHillEvent, startHillReaction;
+let hillEvent;
+let hillEventOpt1, hillEventOpt2, hillEventOpt3
+
+hillEventOpt1 = [
+    {
+        header: "Intro",
+        text: [
+            `After some intial gasps, other contestants are closely looking at you.`,
+            `You notice Heather not only looking but also grinning about it... for some reason.`
+        ],
+        type: "story",
+    },
+]
+
+hillEventOpt2 = [
+    {
+        header: "Intro",
+        text: [
+            `After some intial gasps, other contestants are closely looking at you.`,
+            `You notice Heather not only looking but also grinning about it... for some reason.`
+        ],
+        type: "story",
+    },
+]
+
+hillEventOpt3 = [
+    {
+        header: "Intro",
+        text: [
+            `Cody screams in horror, and then promptly pees his pants. Reluctantly, you lift him up on your shoulders and try to take him into the safe zone, until your savior arrives. A beautiful savior: Justin.`,
+            `Justin's beauty distracts the sharks, and with his muscular arms, he carries you and Cody to safety on the shore while the sharks carry him..`
+        ],
+        type: "story",
+    },
+    {
+        header: "Intro",
+        text: [
+            `"Th-thanks!", Cody says, nervously. His hands were shaking.`,
+            `"No problem", you reply.`
+        ],
+        type: "story",
+    },
+]
+
+hillEvent = [
+    {
+        header: "Your Arrival",
+        text: [
+            `For the rest of the way up, you and Noah have a pleasant conversation about your favourite books. Finally, everyone reaches the top of the cliff. Chris explains the challenge to everyone, and then you jump.`,
+            `BUT, there are SHARKS! You didn't land in the Safe Zone. However, Cody just jumped and he's right next to you - what do you do?`
+
+        ],
+        type: "choice",
+        options: [
+            `Push Cody in front of you and swim away`,
+            `Take your chances with the shark`,
+            `Help Cody escape with you`
+        ],
+        optionsResult: [hillEventOpt1, hillEventOpt2, hillEventOpt3]
+    }
+]
 
 startHillReaction = {
     'Noah': [
         {
             header: "Your Arrival",
             text: [
-                "Hello, Noah!"
+                `"Umm...hi!", You say to Noah.He looks short, but intimidating - like he could crush you to death with words.`,
+                `"Hello", he replies back.`
+
             ],
             type: "story"
-        }
+        },
+        {
+            header: "Your Arrival",
+            text: [
+                `"So, um, crazy challenge huh? Going up a cliff?", You ask him, wanting to start a conversation.`,
+                `"I guess so.", he replies bluntly.`,
+                `"You don't talk much, do you?"`,
+                `"It's a personality trait."`
+
+            ],
+            type: "story",
+            nextEvent: hillEvent
+        },
     ],
 
 }
