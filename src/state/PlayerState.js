@@ -3,6 +3,8 @@ import createStateContext from './state';
 const SET_PLAYER_EVENT = "setPlayerEvent"
 
 const initialState = {
+    playerName: 'Gordon',
+    playerTeam: 'Screaming Gophers',
     playerHistory: [],
     playerEvent: '',
 }
