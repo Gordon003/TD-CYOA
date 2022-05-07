@@ -1,4 +1,4 @@
-import {episode1Story} from "./Episode1";
+import episode1Story from "./Episode1";
 
 export const fullEpisodesList = [
     [],

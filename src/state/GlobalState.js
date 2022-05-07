@@ -11,7 +11,7 @@ const initialState = {
     gameStarted: false,
 
     currentEpisode: 0,
-    currentEvent: [],
+    currentEvent: {},
     currentEventType: "start",
 
     currentStoryList: [],

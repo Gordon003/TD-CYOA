@@ -1,6 +1,9 @@
+body {
+  background-color: #006699;
+}
+
 .App {
   text-align: center;
-  background-color: red;
   position: fixed;
   padding: 0;
   margin: 0;

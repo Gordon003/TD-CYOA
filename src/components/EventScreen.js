@@ -10,29 +10,30 @@ export default function EventScreen() {
     const [{ gameStarted, currentEvent, teamMembers}, dispatchGlobal ] = useGlobalState();
     const [storyIndex, setStoryIndex] = useState(0);
 
+    // Click to go next text
     const handleClickNext = () => {
-
-        if (currentEvent.length === storyIndex + 1){
+        if (storyIndex === currentEvent.story.length - 1) {
+            setStoryIndex(0);
             dispatchGlobal({
                 type: SET_CURRENT_EVENT,
-                payload: currentEvent[storyIndex].nextEvent
+                payload: currentEvent.nextEvent
             })
-            setStoryIndex(0);
         } else {
             setStoryIndex(storyIndex + 1);
         }
     }
 
-    const handleClickOption = (index) => {
-        const lastEvent = currentEvent[storyIndex];
+    // select option
+    const handleClickOption = (nextEvent) => {
         setStoryIndex(0);
         dispatchGlobal({
             type: SET_CURRENT_EVENT,
-            payload: lastEvent.optionsResult[index]
+            payload: nextEvent
         })
         
     }
 
+    // select team member
     const handleMemberSelection = (name) => {
         const memberLst = currentEvent[storyIndex]["reaction"]
         setStoryIndex(0);
@@ -42,11 +43,16 @@ export default function EventScreen() {
         })
     }
 
+    // new story
     useEffect(() => {
         setStoryIndex(0);
     }, [gameStarted, currentEvent])
 
-    let event = currentEvent[storyIndex]
+    let LASTTEXT = false;
+    if (Object.keys(currentEvent).length !== 0) {
+        LASTTEXT = (storyIndex === currentEvent.story.length - 1)
+    }
+
 
     return (
         <div>
@@ -54,31 +60,41 @@ export default function EventScreen() {
 
             {gameStarted && (
                 <>
-                    <p> Testing </p>
-                    <h1> {event.header} </h1>
 
+                    {/* Event Header */}
+                    <h1> {currentEvent.title} </h1>
+
+                    {/* Event text */}
                     {
-                        event.text.map( (item, index) => {
+                        currentEvent.story[storyIndex].text.map( (item, index) => {
                             return <p key={index}> {item} </p>
                         })
                     }
 
+                    {/* Go to next text option */}
                     {
-                        event.type === "choice" && 
-                        event.options.map( (item, index) => {
-                            return <button key={index} onClick={() => handleClickOption(index)}> {item}  </button>
+                        (!LASTTEXT || (LASTTEXT && currentEvent.endType === "nextEvent")) &&
+                        <button onClick={handleClickNext}> Next </button>
+                    }
+
+                    {/* check last event */}
+                    {
+                        LASTTEXT &&
+                        currentEvent.endType === "choice" &&
+                        currentEvent.options.map( (item, index) => {
+                            return <button key={index} onClick={() => handleClickOption(item.nextEvent)}> {item.text}  </button>
                         })
                     }
 
-{
-                        event.type === "team member choice" && 
+                    {console.log(teamMembers)}
+
+                    {/* team interaction option */}
+                    {
+                        LASTTEXT &&
+                        currentEvent.endType === "teamInteraction" &&
                         teamMembers[playerTeam].map( (item, index) => {
                             return <button key={index} onClick={() => handleMemberSelection(item)}> {item}  </button>
                         })
-                    }
-
-                    {
-                        event.type === "story" && <button onClick={handleClickNext}> Next </button>
                     }
 
                 </>
