@@ -1,0 +1,16 @@
+#rightSidebar {
+    background-color: rgb(22, 194, 237);
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar-h3 {
+    font-size: 20px;
+}
+
+.sidebar-p {
+    font-size: 12px;
+    text-align: left;
+}

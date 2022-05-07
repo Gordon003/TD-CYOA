@@ -1,5 +1,7 @@
 import './App.css';
 
+import "../fonts/Samdan.ttf";
+
 import EventScreen from '../components/EventScreen';
 
 function App() {

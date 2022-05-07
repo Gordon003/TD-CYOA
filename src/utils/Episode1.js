@@ -111,7 +111,7 @@ const introEvent = {
         {
             char: ["Chris"],
             text: [
-                `Hey, campers! One last contestant to introduce to you guys! {playerName}`,
+                `Hey, campers! One last contestant to introduce to you guys! $playerName`,
             ]
         },
         {
@@ -124,7 +124,7 @@ const introEvent = {
     endType: 'choice',
     options: [
         {
-            text: `Nice to meet you guys. I'm here to enjoy and make friendship.`,
+            text: `Here to make friends.`,
             nextEvent: introEventResponse1,
         },
         {
@@ -140,7 +140,7 @@ const introEvent = {
 
 
 // export const episode1Story = introduceEvent;
-export default walkEvent;
+export default introEvent;
 export {
     introEvent,
     walkEvent,

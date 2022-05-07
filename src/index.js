@@ -5,6 +5,8 @@ import App from './app/App';
 import { GlobalState } from './state/GlobalState';
 import { PlayerState } from './state/PlayerState';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
