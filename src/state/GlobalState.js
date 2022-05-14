@@ -8,11 +8,13 @@ const SET_CURRENT_EVENT = "setCurrentEvent";
 
 const initialState = {
 
-    gameStarted: false,
+    // gameStarted: false,
+    gameStarted: true,
 
-    currentEpisode: 0,
-    currentEvent: {},
-    currentEventType: "start",
+    // currentEpisode: 0,
+    // currentEvent: {},
+    currentEpisode: 1,
+    currentEvent: fullEpisodesList[1],
 
     currentStoryList: [],
     optionsList: [],

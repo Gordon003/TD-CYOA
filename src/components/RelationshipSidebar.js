@@ -1,6 +1,6 @@
 import { useGlobalState } from '../state/GlobalState';
 
-import './RelationshipSidebar.css';
+import './LeftSidebar.css';
 
 export default function RelationshipSideBar() {
 
@@ -8,10 +8,8 @@ export default function RelationshipSideBar() {
 
     const teamList = Object.keys(teamMembers);
 
-    let element = []
-
     return (
-        <div id="rightSidebar">
+        <div id="relationshipSidebar" className="rightSidebar">
 
             <h2> Relationships </h2>
 

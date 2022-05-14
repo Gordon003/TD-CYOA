@@ -1,5 +1,7 @@
 #mainScreen {
     text-align: center;
+    background-color: rgb(148, 236, 118);
+    height: 100%;
 }
 
 h1 {

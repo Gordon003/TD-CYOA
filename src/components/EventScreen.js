@@ -4,10 +4,11 @@ import './screen.css';
 
 import {SET_CURRENT_EVENT, useGlobalState} from '../state/GlobalState';
 import { usePlayerState } from '../state/PlayerState';
-import StartScreen from './StartScreen';
-import RelationshipSidebar from './RelationshipSidebar';
 
-import Button from 'react-bootstrap/Button';
+import StartScreen from './StartScreen';
+import StoryScreen from './StoryScreen';
+import ProfileSidebar from './ProfileSidebar';
+import RelationshipSidebar from './RelationshipSidebar';
 
 export default function EventScreen() {
 
@@ -64,49 +65,24 @@ export default function EventScreen() {
             {!gameStarted && <StartScreen/>}
 
             {gameStarted && (
-                <div style={{display:'flex'}}>
-                    <div style={{width:'80%'}}>
-                            {/* Event Header */}
-                            <h1> {currentEvent.title} </h1>
+            <div style={{display:'flex'}}>
 
-                            {/* Event text */}
-                            {
-                                currentEvent.story[storyIndex].text.map( (item, index) => {
-                                    return <p key={index}> {item.replace('$playerName', playerName)} </p>
-                                })
-                            }
-
-                            {/* Go to next text option */}
-                            {
-                                (!LASTTEXT || (LASTTEXT && currentEvent.endType === "nextEvent")) &&
-                                <Button onClick={handleClickNext}> Next </Button >
-                            }
-
-                            {/* check last event */}
-                            {
-                                LASTTEXT &&
-                                currentEvent.endType === "choice" &&
-                                currentEvent.options.map( (item, index) => {
-                                    return <Button style={{margin: '25px'}} key={index} onClick={() => handleClickOption(item.nextEvent)}> {item.text.replace('$playerName', playerName)}  </Button>
-                                })
-                            }
-
-                            {/* team interaction option */}
-                            {
-                                LASTTEXT &&
-                                currentEvent.endType === "teamInteraction" &&
-                                teamMembers[playerTeam].map( (item, index) => {
-                                    return <Button key={index} style={{ margin: '5px' }} onClick={() => handleMemberSelection(item)}> {item}  </Button>
-                                })
-                            }
-
-                    </div>
-
-                    <div style={{ width: '20%' }}>
-                        < RelationshipSidebar />
-                    </div>
-                    
+                <div style={{ width: '20%' }}>
+                    < ProfileSidebar />
+                    < RelationshipSidebar />
                 </div>
+
+                <div style={{width:'80%'}}>
+
+                    {currentEvent.endType === "choice" && 
+                        <StoryScreen
+                            text={currentEvent.story[storyIndex].text}
+                            handleClick={handleClickNext}
+                        />
+                    }
+
+                </div>
+            </div>
             )}
 
         </div>
