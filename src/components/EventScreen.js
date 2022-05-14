@@ -7,6 +7,8 @@ import { usePlayerState } from '../state/PlayerState';
 
 import StartScreen from './StartScreen';
 import StoryScreen from './StoryScreen';
+import CharacterDialogueScreen from './CharacterDialogueScreen';
+
 import ProfileSidebar from './ProfileSidebar';
 import RelationshipSidebar from './RelationshipSidebar';
 
@@ -74,8 +76,15 @@ export default function EventScreen() {
 
                 <div style={{width:'80%'}}>
 
-                    {currentEvent.endType === "choice" && 
+                    {storyIndex !== currentEvent.story.length && !("char" in currentEvent.story[storyIndex]) &&
                         <StoryScreen
+                            text={currentEvent.story[storyIndex].text}
+                            handleClick={handleClickNext}
+                        />
+                    }
+
+                    {storyIndex !== currentEvent.story.length && "char" in currentEvent.story[storyIndex] &&
+                        <CharacterDialogueScreen
                             text={currentEvent.story[storyIndex].text}
                             handleClick={handleClickNext}
                         />
