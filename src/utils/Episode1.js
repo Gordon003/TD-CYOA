@@ -118,7 +118,7 @@ const introEvent = {
             char: ["Chris"],
             text: [
                 `Why not you introduce yourself to your fellow contestants?`,
-            ]
+            ],
         },
     ],
     endType: 'choice',

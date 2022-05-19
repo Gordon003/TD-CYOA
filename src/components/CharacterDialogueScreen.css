@@ -6,3 +6,8 @@
     margin: auto;
     top: 15%;
 }
+
+#TextScreen {
+    background-color: red;
+    position: absolute;
+}

@@ -6,14 +6,14 @@ import './LeftSidebar.css';
 export default function ProfileSidebar() {
 
     const [{ teamMembers }] = useGlobalState();
-    const [{ playerTeam } ] = usePlayerState();
+    const [{ playerTeam, playerName } ] = usePlayerState();
 
     let element = []
 
     return (
         <div id="profileSidebar" className="leftSidebar">
 
-            <h3> Profile </h3>
+            <h3> Profile: {playerName} </h3>
             <p> Team: {playerTeam} </p>
 
         </div>

@@ -6,22 +6,46 @@ import { usePlayerState } from '../state/PlayerState';
 
 import './CharacterDialogueScreen.css';
 
+import chris from '../images/chris/chris_normal.png'
+
+const characterExpression = {
+    "Chris": {
+        "normal": require("../images/chris/chris_normal.png"),
+    }
+}
+
 export default function CharacterDialogueScreen(props) {
 
-    const { text, handleClick } = props;
+    const { currentStory, handleClick } = props;
+
+    const { char, text } = currentStory;
 
     const [{ playerName }] = usePlayerState();
 
     return (
         <div id="CharacterDialogueScreen">
 
-            {text.map((item, index) => {
+            <div id="CharScreen">
 
-                const formattedText = item.replace('$playerName', playerName);
+                {char.map((ch, index) => {
 
-                return <p key={index}> {formattedText} </p>
+                    return <img width={250} key={index} src={characterExpression[ch]["normal"]} />
 
-            })}
+                })}
+
+            </div>
+
+            <div id="TextScreen">
+
+                {text.map((item, index) => {
+
+                    const formattedText = item.replace('$playerName', playerName);
+
+                    return <p key={index}> {formattedText} </p>
+
+                })}
+            
+            </div>
 
             <Button onClick={handleClick}> Next </Button >
 

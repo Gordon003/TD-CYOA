@@ -8,9 +8,11 @@ import { usePlayerState } from '../state/PlayerState';
 import StartScreen from './StartScreen';
 import StoryScreen from './StoryScreen';
 import CharacterDialogueScreen from './CharacterDialogueScreen';
+import CharacterOptionsScreen from './CharacterOptionsScreen';
 
 import ProfileSidebar from './ProfileSidebar';
 import RelationshipSidebar from './RelationshipSidebar';
+import LeftSidebar from './LeftSidebar';
 
 export default function EventScreen() {
 
@@ -20,15 +22,7 @@ export default function EventScreen() {
 
     // Click to go next text
     const handleClickNext = () => {
-        if (storyIndex === currentEvent.story.length - 1) {
-            setStoryIndex(0);
-            dispatchGlobal({
-                type: SET_CURRENT_EVENT,
-                payload: currentEvent.nextEvent
-            })
-        } else {
-            setStoryIndex(storyIndex + 1);
-        }
+        setStoryIndex(storyIndex + 1);
     }
 
     // select option
@@ -56,11 +50,12 @@ export default function EventScreen() {
         setStoryIndex(0);
     }, [gameStarted, currentEvent])
 
-    let LASTTEXT = false;
-    if (Object.keys(currentEvent).length !== 0) {
-        LASTTEXT = (storyIndex === currentEvent.story.length - 1)
-    }
+    let currentStory = currentEvent["story"][storyIndex];
 
+    let lastText = false;
+    if (currentStory === undefined) {
+        lastText = true;
+    }
 
     return (
         <div id="mainScreen">
@@ -70,23 +65,29 @@ export default function EventScreen() {
             <div style={{display:'flex'}}>
 
                 <div style={{ width: '20%' }}>
-                    < ProfileSidebar />
-                    < RelationshipSidebar />
+                    <LeftSidebar />
                 </div>
 
                 <div style={{width:'80%'}}>
 
-                    {storyIndex !== currentEvent.story.length && !("char" in currentEvent.story[storyIndex]) &&
+                    {!lastText && !("char" in currentStory) &&
                         <StoryScreen
                             text={currentEvent.story[storyIndex].text}
                             handleClick={handleClickNext}
                         />
                     }
 
-                    {storyIndex !== currentEvent.story.length && "char" in currentEvent.story[storyIndex] &&
+                    {!lastText  && "char" in currentStory &&
                         <CharacterDialogueScreen
-                            text={currentEvent.story[storyIndex].text}
+                            currentStory={currentStory}
                             handleClick={handleClickNext}
+                        />
+                    }
+
+                    {lastText && currentEvent["endType"] === "choice" &&
+                        <CharacterOptionsScreen
+                            options={currentEvent.options}
+                            handleClick = {handleClickOption}
                         />
                     }
 

@@ -9,31 +9,24 @@ export default function RelationshipSideBar() {
     const teamList = Object.keys(teamMembers);
 
     return (
-        <div id="relationshipSidebar" className="rightSidebar">
-
-            <h2> Relationships </h2>
+        <div id="relationshipSidebar">
 
             {
-                teamList.map((item) => {
+                teamList.map((item, index) => {
                     return (
-                        <>
+                        <div key={index}>
                             <h3 className="sidebar-h3"> {item} </h3>
                             <ul>
                             {
-                                teamMembers[item].map((name, index) => {
+                                teamMembers[item].map((name, index2) => {
                                     return (
-                                        <li className='sidebar-p' key={index}> {name} </li>   
+                                        <li className='sidebar-p' key={index2}> {name} </li>   
                                     )
                                 })
                             }
                             </ul>
-                        </>
+                        </div>
                     )
-                    // teamList[item].map((name, index) => {
-                    //     return (
-                    //         <p key={index}> {name} </p>
-                    //     )
-                    // })
                 })
             }
 

@@ -1,13 +1,11 @@
 import createStateContext from './state';
 
-const SET_PLAYER_EVENT = "setPlayerEvent"
 const ADD_PLAYER_ACTION = "addPlayerAction"
 
 const initialState = {
     playerName: 'Gordon',
     playerTeam: 'Screaming Gophers',
     playerHistory: [],
-    playerEvent: '',
     playerRelationship:{
         "Beth": {
             relationship: 100,
@@ -82,8 +80,6 @@ const PlayerState = StateProvider;
 
 function reducer(state, action) {
     switch (action.type) {
-        case SET_PLAYER_EVENT:
-            return { ...state, playerEvent: action.payload };
         case ADD_PLAYER_ACTION:
             const newHistory = state.playerHistory.push(action.payload);
             return { ...state, playerHistory: newHistory };
