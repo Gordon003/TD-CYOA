@@ -6,3 +6,8 @@
     margin:auto;
     top: 15%;
 }
+
+#StoryTextScreen{
+    background-color: red;
+    width: 80%;
+}

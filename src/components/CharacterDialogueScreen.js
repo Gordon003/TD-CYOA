@@ -22,6 +22,8 @@ export default function CharacterDialogueScreen(props) {
 
     const [{ playerName }] = usePlayerState();
 
+    
+
     return (
         <div id="CharacterDialogueScreen">
 

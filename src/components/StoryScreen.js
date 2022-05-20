@@ -15,13 +15,17 @@ export default function StoryScreen(props) {
     return (
         <div id="StoryScreen">
 
-            {text.map( (item, index) => {
+            <div id = "StoryTextScreen">
 
-                const formattedText = item.replace('$playerName', playerName);
+                {text.map( (item, index) => {
 
-                return <p key={index}> {formattedText} </p>
+                    const formattedText = item.replace('$playerName', playerName);
+
+                    return <p key={index}> {formattedText} </p>
+                    
+                })}
                 
-            })}
+            </div>
 
             <Button onClick={handleClick}> Next </Button >
 
