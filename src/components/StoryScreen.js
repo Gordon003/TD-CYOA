@@ -3,14 +3,25 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 
 import { usePlayerState } from '../state/PlayerState';
+import {SET_EVENT_INDEX, useGlobalState } from '../state/GlobalState';
 
 import './StoryScreen.css';
 
-export default function StoryScreen(props) {
+const log = (txt) => { console.log(txt)}
 
-    const {text, handleClick} = props;
+export default function StoryScreen() {
 
     const [{ playerName } ] = usePlayerState();
+    const [{ currentEvent, currentEventIndex}, dispatchGlobal] = useGlobalState();
+
+    const handleClick = () => {
+        dispatchGlobal({
+            type: SET_EVENT_INDEX,
+            payload: currentEventIndex + 1,
+        })
+    }
+
+    const text = currentEvent.story[currentEventIndex].text;
 
     return (
         <div id="StoryScreen">
@@ -27,7 +38,7 @@ export default function StoryScreen(props) {
                 
             </div>
 
-            <Button onClick={handleClick}> Next </Button >
+            <Button id="StoryButton" onClick={handleClick}> Next </Button >
 
         </div>
     )

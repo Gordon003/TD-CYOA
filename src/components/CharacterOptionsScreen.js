@@ -2,15 +2,23 @@ import React from 'react';
 
 import Button from 'react-bootstrap/Button';
 
+import {SET_CURRENT_EVENT, SET_EVENT_INDEX, useGlobalState} from '../state/GlobalState';
 import { usePlayerState } from '../state/PlayerState';
 
-export default function CharacterOptionsScreen(props) {
-
-    const { options, handleClick } = props;
+export default function CharacterOptionsScreen() {
 
     const [{ playerName }] = usePlayerState();
+    const [{ currentEvent }, dispatchGlobal] = useGlobalState();
 
-    console.log("here")
+    const options = currentEvent.options;
+
+    // select option
+    const handleClick = (nextEvent) => {
+        dispatchGlobal({
+            type: SET_CURRENT_EVENT,
+            payload: nextEvent
+        }) 
+    }
 
     return (
         <div>

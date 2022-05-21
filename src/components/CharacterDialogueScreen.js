@@ -3,10 +3,9 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 
 import { usePlayerState } from '../state/PlayerState';
+import {SET_EVENT_INDEX, useGlobalState } from '../state/GlobalState';
 
 import './CharacterDialogueScreen.css';
-
-import chris from '../images/chris/chris_normal.png'
 
 const characterExpression = {
     "Chris": {
@@ -14,15 +13,21 @@ const characterExpression = {
     }
 }
 
-export default function CharacterDialogueScreen(props) {
-
-    const { currentStory, handleClick } = props;
-
-    const { char, text } = currentStory;
+export default function CharacterDialogueScreen() {
 
     const [{ playerName }] = usePlayerState();
+    const [{ currentEvent, currentEventIndex}, dispatchGlobal] = useGlobalState();
 
-    
+    const story = currentEvent.story[currentEventIndex];
+    const char = story.char;
+    const text = story.text;
+
+    const handleClick = () => {
+        dispatchGlobal({
+            type: SET_EVENT_INDEX,
+            payload: currentEventIndex + 1,
+        })
+    }
 
     return (
         <div id="CharacterDialogueScreen">
@@ -46,10 +51,10 @@ export default function CharacterDialogueScreen(props) {
                     return <p key={index}> {formattedText} </p>
 
                 })}
+
+                <Button onClick={handleClick}> Next </Button >
             
             </div>
-
-            <Button onClick={handleClick}> Next </Button >
 
         </div>
     )

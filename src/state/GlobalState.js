@@ -5,6 +5,7 @@ import { fullEpisodesList } from '../utils/Story';
 const SET_GAME_START = "setGameStart";
 const SET_GAME_EPISODE = "setGameEpisode";
 const SET_CURRENT_EVENT = "setCurrentEvent";
+const SET_EVENT_INDEX = "setEventIndex";
 
 const initialState = {
 
@@ -15,9 +16,7 @@ const initialState = {
     // currentEvent: {},
     currentEpisode: 1,
     currentEvent: fullEpisodesList[1],
-
-    currentStoryList: [],
-    optionsList: [],
+    currentEventIndex: 0,
 
     teamList: [
         'Killer Bass',
@@ -61,9 +60,11 @@ const GlobalState = StateProvider;
 function reducer(state, action) {
     switch (action.type) {
         case SET_GAME_START:
-            return { ...state, gameStarted: true, currentEpisode: 1, currentEvent: fullEpisodesList[1]}
+            return { ...state, gameStarted: true, currentEpisode: 1, currentEvent: fullEpisodesList[1]};
         case SET_CURRENT_EVENT:
-            return { ...state, currentEvent: action.payload}
+            return { ...state, currentEvent: action.payload};
+        case SET_EVENT_INDEX:
+            return { ...state, currentEventIndex: action.payload};
         case SET_GAME_EPISODE:
             const num = action.payload;
             return { ...state, currentEpisode: num, currentEvent: fullEpisodesList[num]};
@@ -76,5 +77,6 @@ export {
     useGlobalState,
     GlobalState,
     SET_GAME_START,
-    SET_CURRENT_EVENT
+    SET_CURRENT_EVENT,
+    SET_EVENT_INDEX,
 }
