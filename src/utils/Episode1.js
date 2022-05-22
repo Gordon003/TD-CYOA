@@ -126,10 +126,6 @@ const introEvent = {
         {
             text: `Here to make friends.`,
             nextEvent: introEventResponse1,
-            effect: {
-                "Sadie": 20,
-                "Katie": 20,
-            },
         },
         {
             text: `Hi. I'm here to compete`,
