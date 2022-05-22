@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import './screen.css';
 
-import {useGlobalState} from '../state/GlobalState';
+import {SET_EVENT_INDEX, useGlobalState} from '../state/GlobalState';
 
 import StartScreen from './StartScreen';
 import StoryScreen from './StoryScreen';
@@ -13,7 +13,7 @@ import LeftSidebar from './LeftSidebar';
 
 export default function EventScreen() {
 
-    const [{ gameStarted, currentEvent, currentEventIndex} ] = useGlobalState();
+    const [{ gameStarted, currentEvent, currentEventIndex}, dispatchGlobal] = useGlobalState();
 
     let currentStory = currentEvent["story"][currentEventIndex];
 
@@ -21,6 +21,14 @@ export default function EventScreen() {
     if (currentStory === undefined) {
         lastText = true;
     }
+
+    useEffect(() => {
+        dispatchGlobal({
+            type: SET_EVENT_INDEX,
+            payload: 0
+
+        })
+    }, [currentEvent]);
 
     return (
         <div id="mainScreen">

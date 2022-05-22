@@ -1,0 +1,14 @@
+#CharacterOptionsScreen {
+    background-color: #CBC3E3;
+    height: 70%;
+    width: 70%;
+    position: relative;
+    margin: auto;
+    display: block;
+    top: 15%;
+}
+
+.OptionBut {
+    text-align: center;
+    display: block;
+}

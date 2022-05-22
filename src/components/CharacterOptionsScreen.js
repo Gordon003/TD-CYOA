@@ -5,6 +5,8 @@ import Button from 'react-bootstrap/Button';
 import {SET_CURRENT_EVENT, SET_EVENT_INDEX, useGlobalState} from '../state/GlobalState';
 import { usePlayerState } from '../state/PlayerState';
 
+import './CharacterOptionsScreen.css';
+
 export default function CharacterOptionsScreen() {
 
     const [{ playerName }] = usePlayerState();
@@ -21,11 +23,11 @@ export default function CharacterOptionsScreen() {
     }
 
     return (
-        <div>
+        <div id="CharacterOptionsScreen">
 
-            {options.map( (item, index) => {
-                return <Button id={index} style={{margin: '25px'}} key={index} onClick={() => handleClick(item.nextEvent)}> {item.text.replace('$playerName', playerName)}  </Button>
-            })}
+                {options.map( (item, index) => {
+                    return <Button id={index} className="OptionBut" style={{margin: '25px'}} key={index} onClick={() => handleClick(item.nextEvent)}> {item.text.replace('$playerName', playerName)}  </Button>
+                })}
 
         </div>
     )
